@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 bg-black shadow-lg border-b border-gray-800">
+  <header class="sticky top-0 bg-black shadow-lg border-b z-50 border-gray-800">
     <div class="container mx-auto flex items-center justify-between px-4 py-3">
       <!-- Logo -->
       <a href="/" class="flex-shrink-0">
