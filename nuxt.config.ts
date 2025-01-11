@@ -3,12 +3,12 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   modules: [
-    "@nuxtjs/storybook",
     "@pinia/nuxt",
     "@nuxtjs/tailwindcss",
     "@nuxt/eslint",
     "shadcn-nuxt",
     "@nuxtjs/color-mode",
+    "nuxt-lucide-icons",
   ],
   shadcn: {
     /**
