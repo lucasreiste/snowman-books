@@ -45,7 +45,7 @@ const props = defineProps<{
   };
 }>();
 
-const emit = defineEmits(["prev-step", "next-step", "update:formData"]);
+const emit = defineEmits(["prev-step", "next-step"]);
 
 const handleSubmit = () => {
   emit("next-step");

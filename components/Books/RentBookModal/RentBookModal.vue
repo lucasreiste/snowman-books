@@ -28,8 +28,8 @@ import { defineProps, defineEmits } from "vue";
 import Stepper from "./Stepper.vue";
 import ConfirmationStep from "./steps/ConfirmationStep.vue";
 import PersonalDataStep from "./steps/PersonalDataStep.vue";
-// import PaymentStep from "./steps/PaymentStep.vue";
-// import SuccessStep from "./steps/SuccessStep.vue";
+import PaymentStep from "./steps/PaymentStep.vue";
+import SuccessStep from "./steps/SuccessStep.vue";
 
 const props = defineProps<{
   book: {
@@ -82,8 +82,8 @@ const steps = [
 const stepComponents = {
   1: ConfirmationStep,
   2: PersonalDataStep,
-  // 3: PaymentStep,
-  // 4: SuccessStep,
+  3: PaymentStep,
+  4: SuccessStep,
 };
 
 const currentStepComponent = computed(() => stepComponents[currentStep.value]);
