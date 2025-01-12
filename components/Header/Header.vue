@@ -20,22 +20,6 @@
         >
           {{ item.label }}
         </a>
-        <a
-          href="/catalogo"
-          class="text-blue-400 border border-blue-500 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-200 font-medium"
-        >
-          Catálogo
-        </a>
-        <div v-if="isLoggedIn" class="text-gray-300">Minha Conta</div>
-        <div v-else class="flex items-center space-x-4">
-          <a href="/login" class="text-gray-300 hover:text-blue-400">Login</a>
-          <a
-            href="/cadastrar"
-            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
-          >
-            Cadastrar
-          </a>
-        </div>
       </nav>
 
       <!-- Mobile Menu Button -->
@@ -63,38 +47,16 @@
           >
             {{ item.label }}
           </a>
-          <a
-            href="/catalogo"
-            class="text-blue-400 border border-blue-500 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-200 font-medium"
-          >
-            Catálogo
-          </a>
         </nav>
-        <div class="flex flex-col space-y-3">
-          <a
-            href="/login"
-            class="text-gray-300 border border-blue-500 px-4 py-2 rounded-lg hover:bg-blue-500 hover:text-white text-center transition-colors duration-200"
-          >
-            Login
-          </a>
-          <a
-            href="/cadastrar"
-            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center transition-colors duration-200"
-          >
-            Cadastrar
-          </a>
-        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import logoSnow from "@/assets/logosnowof.png";
 
 const isMobileMenuOpen = ref(false);
-const isLoggedIn = ref(false);
 
 const menuItems = [
   { label: "Início", path: "/" },
