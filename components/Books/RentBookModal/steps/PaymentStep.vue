@@ -22,19 +22,17 @@
     </div>
 
     <div v-else-if="selectedMethodId === 1">
-      <h2 class="text-lg font-bold mb-4 text-primary">
-        Pagamento com Cartão de Crédito
-      </h2>
+      <h2 class="text-lg font-bold mb-4 text-primary">Cartão de Crédito</h2>
       <form @submit.prevent="goToNextStep">
         <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700"
-            >Número do Cartão</label
-          >
+          <label class="block text-sm font-medium text-gray-700">
+            Número do Cartão
+          </label>
           <Input
             v-model="formData.cardNumber"
             type="text"
             required
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+            class="mt-1 block w-full"
           />
         </div>
         <div class="mb-4 flex space-x-4">
@@ -47,7 +45,7 @@
               type="text"
               required
               placeholder="MM/AA"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+              class="mt-1 block w-full"
             />
           </div>
           <div class="w-1/2">
@@ -56,13 +54,9 @@
               v-model="formData.cvv"
               type="text"
               required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+              class="mt-1 block w-full"
             />
           </div>
-        </div>
-        <div class="flex justify-end space-x-4 pt-4">
-          <Button variant="secondary" @click="goBackToSelection">Voltar</Button>
-          <Button variant="primary" type="submit">Avançar</Button>
         </div>
       </form>
     </div>
@@ -71,60 +65,39 @@
       <h2 class="text-lg font-bold mb-2 text-primary">Pagamento via PIX</h2>
       <p class="mb-2">Escaneie o QR code ou copie o código abaixo:</p>
       <img
-        src="@/assets/img/paymentmethods/qrcode.png"
+        src="~/assets/img/paymentmethods/qrcode.png"
         alt="QR code para pagamento PIX"
         class="mt-2 mb-2 h-40 w-40 object-contain mx-auto"
       />
       <textarea rows="3" class="border rounded w-full p-2 mb-4" readonly>
-Aqui vai o código PIX a ser copiado
+Código PIX ...
       </textarea>
-      <div class="flex justify-end space-x-4">
-        <Button variant="secondary" @click="goBackToSelection">Voltar</Button>
-        <Button variant="primary" @click="goToNextStep"
-          >Confirmar Pagamento</Button
-        >
-      </div>
     </div>
 
     <div v-else-if="selectedMethodId === 3">
       <h2 class="text-lg font-bold mb-2 text-primary">Pagamento via Boleto</h2>
-      <p class="mb-2">Clique no botão abaixo para gerar seu boleto bancário.</p>
-      <div class="flex justify-end space-x-4 mt-4">
-        <Button variant="secondary" @click="goBackToSelection">Voltar</Button>
-        <Button variant="primary" @click="goToNextStep">Gerar Boleto</Button>
-      </div>
+      <p class="mb-2">Use o código abaixo para pagar o boleto:</p>
+      <textarea rows="3" class="border rounded w-full p-2 mb-4" readonly>
+Código do Boleto ...
+      </textarea>
     </div>
 
     <div v-else-if="selectedMethodId === 4">
       <h2 class="text-lg font-bold mb-2 text-primary">Pagamento via Bitcoin</h2>
-      <p class="mb-2">
-        Envie a quantia exata de BTC para o endereço abaixo ou utilize o QR
-        code:
-      </p>
-      <img
-        src="@/assets/img/paymentmethods/qrcode.png"
-        alt="QR code para pagamento Bitcoin"
-        class="mt-2 mb-2 h-40 w-40 object-contain mx-auto"
-      />
+      <p class="mb-2">Use o endereço abaixo para pagar com Bitcoin:</p>
       <textarea rows="3" class="border rounded w-full p-2 mb-4" readonly>
-Endereço de carteira Bitcoin
+Endereço Bitcoin ...
       </textarea>
-      <div class="flex justify-end space-x-4">
-        <Button variant="secondary" @click="goBackToSelection">Voltar</Button>
-        <Button variant="primary" @click="goToNextStep"
-          >Confirmar Pagamento</Button
-        >
-      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits } from "vue";
-import pixImage from "@/assets/img/paymentmethods/pix.png";
-import cardImage from "@/assets/img/paymentmethods/card.jpg";
-import boletoImage from "@/assets/img/paymentmethods/boleto.jpg";
-import bitcoinImage from "@/assets/img/paymentmethods/bitcoin.png";
+import { defineProps } from "vue";
+import pixImage from "~/assets/img/paymentmethods/pix.png";
+import cardImage from "~/assets/img/paymentmethods/card.jpg";
+import boletoImage from "~/assets/img/paymentmethods/boleto.jpg";
+import bitcoinImage from "~/assets/img/paymentmethods/bitcoin.png";
 
 const props = defineProps<{
   formData: {
@@ -134,26 +107,16 @@ const props = defineProps<{
   };
 }>();
 
-const emit = defineEmits(["prev-step", "next-step"]);
-
-const paymentMethods = ref([
+const paymentMethods = [
   { id: 1, label: "Cartão", imgSrc: cardImage },
   { id: 2, label: "PIX", imgSrc: pixImage },
   { id: 3, label: "Boleto", imgSrc: boletoImage },
   { id: 4, label: "Bitcoin", imgSrc: bitcoinImage },
-]);
+];
 
 const selectedMethodId = ref<number | null>(null);
 
 function selectPaymentMethod(methodId: number) {
   selectedMethodId.value = methodId;
-}
-
-function goBackToSelection() {
-  selectedMethodId.value = null;
-}
-
-function goToNextStep() {
-  emit("next-step");
 }
 </script>

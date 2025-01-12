@@ -1,23 +1,33 @@
 <template>
-  <Dialog :open="true">
-    <DialogTrigger as-child>
-      <slot name="trigger">
-        <Button> Alugar</Button>
-      </slot>
-    </DialogTrigger>
+  <Dialog :open="open">
     <DialogContent class="sm:max-w-3xl p-6">
       <div class="flex flex-col">
         <Stepper :steps="steps" :current-step="currentStep" />
-
         <component
           :is="currentStepComponent"
-          v-model:form-data="formData"
-          :book="book"
-          @close="close"
-          @next-step="nextStep"
-          @prev-step="prevStep"
-          @confirm="confirmAction"
+          v-model:form-data="purchaseStore.formData"
+          :book="purchaseStore.book"
+          @close="onClose"
+          @confirm="onConfirm"
         />
+
+        <div class="mt-6 flex justify-end space-x-4">
+          <Button v-if="currentStep > 1" variant="secondary" @click="onPrevStep"
+            >Voltar</Button
+          >
+          <Button
+            v-if="currentStep < steps.length"
+            variant="primary"
+            @click="onNextStep"
+            >Continuar</Button
+          >
+          <Button
+            v-if="currentStep === steps.length"
+            variant="primary"
+            @click="onConfirm"
+            >Fechar</Button
+          >
+        </div>
       </div>
     </DialogContent>
   </Dialog>
@@ -25,6 +35,8 @@
 
 <script lang="ts" setup>
 import { defineProps, defineEmits } from "vue";
+import { usePurchaseStore } from "@/stores/usePurchaseStore";
+
 import Stepper from "./Stepper.vue";
 import ConfirmationStep from "./steps/ConfirmationStep.vue";
 import PersonalDataStep from "./steps/PersonalDataStep.vue";
@@ -32,51 +44,22 @@ import PaymentStep from "./steps/PaymentStep.vue";
 import SuccessStep from "./steps/SuccessStep.vue";
 
 const props = defineProps<{
-  book: {
-    id: number;
-    coverImage: string;
-    title: string;
-    subtitle?: string;
-    author: string;
-    categories?: string;
-    pageCount?: number;
-    language: string;
-    description: string;
-    price: number;
-    buyLink?: string;
-    rentLink?: string;
-  };
-  actionType: "rent" | "buy";
+  open: boolean;
 }>();
 
-const emit = defineEmits(["confirm", "close"]);
+const emit = defineEmits(["close", "confirm"]);
 
-const open = ref(false);
-
-//Stepper Logic
 const currentStep = ref(1);
 
 const steps = [
-  {
-    step: 1,
-    title: "Confirmação",
-    description: "Confirme o aluguel do livro",
-  },
+  { step: 1, title: "Confirmação", description: "Confirme o aluguel do livro" },
   {
     step: 2,
     title: "Dados Pessoais",
-    description: "Informe seus dados pessoais e de endereço",
+    description: "Informe seus dados pessoais",
   },
-  {
-    step: 3,
-    title: "Pagamento",
-    description: "Realize o pagamento do aluguel",
-  },
-  {
-    step: 4,
-    title: "Confirmação",
-    description: "Aluguel realizado com sucesso",
-  },
+  { step: 3, title: "Pagamento", description: "Realize o pagamento" },
+  { step: 4, title: "Sucesso", description: "Aluguel realizado com sucesso" },
 ];
 
 const stepComponents = {
@@ -88,34 +71,44 @@ const stepComponents = {
 
 const currentStepComponent = computed(() => stepComponents[currentStep.value]);
 
-const formData = ref({
-  name: "",
-  email: "",
-  address: "",
-});
+const purchaseStore = usePurchaseStore();
 
-const nextStep = () => {
-  if (currentStep.value < steps.length) {
-    currentStep.value += 1;
-    if (currentStep.value === 4) {
-      emit("confirm", props.book);
+
+watch(
+  () => props.open,
+  (isOpen) => {
+    if (isOpen) {
+      currentStep.value = 1;
+      purchaseStore.resetFormData();
     }
   }
-};
+);
 
-const prevStep = () => {
-  if (currentStep.value > 1) {
-    currentStep.value -= 1;
+
+function onNextStep() {
+  if (currentStep.value < steps.length) {
+    currentStep.value++;
+    if (currentStep.value === 5 && purchaseStore.book) {
+      emit("confirm", purchaseStore.book);
+    }
   }
-};
+}
 
-const confirmAction = () => {
-  emit("confirm", props.book);
-  close();
-};
 
-const close = () => {
+function onPrevStep() {
+  if (currentStep.value > 1) {
+    currentStep.value--;
+  }
+}
+
+function onConfirm() {
+  if (purchaseStore.book) {
+    emit("confirm", purchaseStore.book);
+  }
+  onClose();
+}
+
+function onClose() {
   emit("close");
-  open.value = false;
-};
+}
 </script>

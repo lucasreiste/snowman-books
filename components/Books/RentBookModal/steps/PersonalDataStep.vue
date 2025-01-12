@@ -6,7 +6,7 @@
         v-model="formData.name"
         type="text"
         required
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+        class="mt-1 block w-full"
       />
     </div>
     <div class="mb-4">
@@ -15,7 +15,7 @@
         v-model="formData.email"
         type="email"
         required
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+        class="mt-1 block w-full"
       />
     </div>
     <div class="mb-4">
@@ -24,18 +24,14 @@
         v-model="formData.address"
         type="text"
         required
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
+        class="mt-1 block w-full"
       />
-    </div>
-    <div class="flex justify-end space-x-4">
-      <Button variant="secondary" @click="prevStep">Voltar</Button>
-      <Button variant="primary" type="submit">Avançar</Button>
     </div>
   </form>
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps } from "vue";
 
 const props = defineProps<{
   formData: {
@@ -44,14 +40,4 @@ const props = defineProps<{
     address: string;
   };
 }>();
-
-const emit = defineEmits(["prev-step", "next-step"]);
-
-const handleSubmit = () => {
-  emit("next-step");
-};
-
-const prevStep = () => {
-  emit("prev-step");
-};
 </script>
