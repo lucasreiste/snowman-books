@@ -14,46 +14,64 @@ interface GoogleBook {
     pageCount?: number;
     language: string;
   };
-  saleInfo: {
-    buyLink?: string;
+}
+
+export async function fetchBooks(
+  searchTerm = "subject:fiction",
+  maxResults = 10
+): Promise<Book[]> {
+  const apiUrl = "https://www.googleapis.com/books/v1/volumes";
+  const params = new URLSearchParams({
+    q: searchTerm.trim(),
+    maxResults: maxResults.toString(),
+  });
+
+  try {
+    const response = await fetch(`${apiUrl}?${params.toString()}`);
+
+    if (!response.ok) {
+      throw new Error(`Erro ao buscar livros: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.items) {
+      console.warn("Nenhum item encontrado para a busca:", searchTerm);
+      return [];
+    }
+
+    return data.items.map(mapGoogleBookToBook);
+  } catch (error) {
+    console.error("Erro ao buscar livros:", error);
+    return [];
+  }
+}
+
+function mapGoogleBookToBook(item: GoogleBook): Book {
+  const {
+    id,
+    volumeInfo: {
+      title,
+      subtitle,
+      authors,
+      description,
+      imageLinks,
+      categories,
+      pageCount,
+      language,
+    },
+  } = item;
+
+  return {
+    id,
+    title: title || "Título desconhecido",
+    subtitle: subtitle || null,
+    author: authors?.join(", ") || "Autor desconhecido",
+    description: description || "Sem descrição disponível.",
+    coverImage: imageLinks?.thumbnail || "",
+    categories: categories?.join(", ") || "N/A",
+    pageCount: pageCount || "N/A",
+    language: language?.toUpperCase() || "N/A",
+    price: Math.floor(Math.random() * 10) + 1,
   };
 }
-
-interface FetchBooksResult {
-  books: Book[] | null;
-  error: string | null;
-}
-
-export const fetchBooks = async (): Promise<FetchBooksResult> => {
-  const response = await fetch(
-    "https://www.googleapis.com/books/v1/volumes?q=subject:fiction&orderBy=relevance&printType=books&maxResults=5"
-  );
-
-  if (!response.ok) {
-    return { books: null, error: `Erro na requisição: ${response.status}` };
-  }
-
-  const data = await response.json();
-
-  if (!data.items) {
-    return { books: null, error: "Nenhum livro encontrado." };
-  }
-
-  const books: Book[] = data.items.map(
-    (item: GoogleBook): Book => ({
-      id: item.id,
-      title: item.volumeInfo.title,
-      subtitle: item.volumeInfo.subtitle || null,
-      author: item.volumeInfo.authors?.join(", ") || "Autor desconhecido",
-      description: item.volumeInfo.description || "Sem descrição disponível.",
-      coverImage: item.volumeInfo.imageLinks?.thumbnail || "",
-      categories: item.volumeInfo.categories?.join(", ") || "N/A",
-      pageCount: item.volumeInfo.pageCount || "N/A",
-      language: item.volumeInfo.language.toUpperCase(),
-      price: Math.floor(Math.random() * 100) + 10,
-      buyLink: item.saleInfo.buyLink || null,
-    })
-  );
-
-  return { books, error: null };
-};

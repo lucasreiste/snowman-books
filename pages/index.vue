@@ -1,86 +1,83 @@
 <template>
   <div>
-    <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <section class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold mb-8 text-center">Resultados da Busca</h2>
-        <div v-if="isLoading" class="text-center">
-          <p class="text-xl text-gray-600">Carregando livros...</p>
-        </div>
-        <div v-else-if="error" class="text-center text-red-500">
-          <p class="text-xl">Erro ao carregar livros: {{ error }}</p>
-        </div>
-        <div v-else>
-          <BookList :books="paginatedBooks" @rent-book="handleRentBook" />
-          <Pagination
-            :total-items="books.length"
-            :items-per-page="itemsPerPage"
-            :current-page="currentPage"
-            @page-change="handlePageChange"
-          />
-        </div>
+        <SearchBook @search-book="handleSearch" @clear-search="clearSearch" />
+        <h2 class="text-3xl font-bold mb-8 text-center">
+          {{ searchQuery ? "Resultados da Busca" : "Livros Disponíveis" }}
+        </h2>
+
+        <template v-if="isLoading">
+          <BookSkeleton />
+        </template>
+
+        <template v-else>
+          <div v-if="error" class="text-center text-red-500">
+            <p class="text-xl">Erro ao carregar livros: {{ error }}</p>
+          </div>
+
+          <div v-else-if="books.length > 0">
+            <BookList
+              v-model:items-per-page="itemsPerPage"
+              :books="paginatedBooks"
+              @rent-book="handleRentBook"
+            />
+            <Pagination
+              :total-items="books.length"
+              :items-per-page="itemsPerPage"
+              :current-page="currentPage"
+              @page-change="handlePageChange"
+            />
+          </div>
+
+          <div v-else class="text-center text-gray-600">
+            <p class="text-xl">Nenhum livro encontrado.</p>
+          </div>
+        </template>
       </div>
-    </div>
-    <RentBookModal
+    </section>
+
+    <RentalBookModal
       :open="isModalOpen"
-      @confirm="confirmRent"
-      @close="closeModal"
+      @confirm="isModalOpen = false"
+      @close="isModalOpen = false"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { fetchBooks } from "@/services/bookService";
+import { useBooks } from "@/composables/useBooks";
+import { useRentalStore } from "@/stores/useRentalStore";
+import { useRental } from "@/composables/useRental";
 import type { Book } from "@/types/book";
-import { usePurchaseStore } from "@/stores/usePurchaseStore";
 
-const books = ref<Book[]>([]);
-const currentPage = ref<number>(1);
-const itemsPerPage = ref<number>(10);
-const isLoading = ref<boolean>(false);
-const error = ref<string | null>(null);
-const isModalOpen = ref<boolean>(false);
-const purchaseStore = usePurchaseStore();
+const {
+  books,
+  paginatedBooks,
+  currentPage,
+  itemsPerPage,
+  isLoading,
+  error,
+  searchQuery,
+  loadBooks,
+  clearSearch,
+  handlePageChange,
+} = useBooks(10);
 
-async function loadBooks() {
-  isLoading.value = true;
-  const result = await fetchBooks();
+const rentalStore = useRentalStore();
+const rental = useRental();
+const isModalOpen = ref(false);
 
-  if (result.error) {
-    error.value = result.error;
-  } else if (result.books) {
-    books.value = result.books;
-  }
-  isLoading.value = false;
-}
+onMounted(() => loadBooks());
 
-onMounted(loadBooks);
+const handleSearch = async (term: string) => {
+  searchQuery.value = term;
+  await loadBooks(term);
+};
 
-const paginatedBooks = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage.value;
-  const end = start + itemsPerPage.value;
-  return books.value.slice(start, end);
-});
-
-function handlePageChange(page: number) {
-  currentPage.value = page;
-}
-
-function handleRentBook(book: Book) {
-  purchaseStore.setBook(book);
+const handleRentBook = (book: Book) => {
+  rentalStore.setSelectedBook(book);
+  rentalStore.setRentalDetails(rental.initializeRental(book));
   isModalOpen.value = true;
-}
-
-function closeModal() {
-  isModalOpen.value = false;
-}
-
-function confirmRent(book: Book) {
-  console.log("Aluguel confirmado para o livro:", book.title);
-  const rentalInfo = {
-    book: purchaseStore.book,
-    userInfo: purchaseStore.formData,
-  };
-  localStorage.setItem("rentalInfo", JSON.stringify(rentalInfo));
-  isModalOpen.value = false;
-}
+};
 </script>

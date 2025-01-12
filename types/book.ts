@@ -9,5 +9,4 @@ export interface Book {
   pageCount: number | string;
   language: string;
   price: number;
-  buyLink?: string | null;
 }
