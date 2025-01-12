@@ -59,7 +59,7 @@ import logoSnow from "@/assets/logosnowof.png";
 const isMobileMenuOpen = ref(false);
 
 const menuItems = [
-  { label: "Início", path: "/" },
-  { label: "Meus Livros", path: "/my-books" },
+  { label: "Catálogo", path: "/" },
+  { label: "Meus Livros Alugados", path: "/my-books" },
 ];
 </script>

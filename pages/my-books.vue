@@ -1,7 +1,5 @@
 <template>
   <div>
-    <Header />
-
     <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto">
         <h2 class="text-3xl font-bold mb-8 text-center">Livros Alugados</h2>
@@ -22,8 +20,6 @@
 </template>
 
 <script lang="ts" setup>
-import Header from "@/components/Header/Header.vue";
-import RentedBookList from "@/components/Books/RentedBookList/RentedBookList.vue";
 import type { Book } from "@/types/book";
 
 const rentedBooks = ref<

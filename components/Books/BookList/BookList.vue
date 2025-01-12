@@ -86,7 +86,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps } from "vue";
 import type { Book } from "@/types/book";
 
 interface Props {
