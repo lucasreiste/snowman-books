@@ -4,15 +4,12 @@
       <div class="max-w-7xl mx-auto">
         <h2 class="text-3xl font-bold mb-8 text-center">Livros Alugados</h2>
 
-        <div v-if="rentedBooks.length === 0" class="text-center">
+        <div v-if="activeRentals.length === 0" class="text-center">
           <p class="text-xl text-gray-600">Nenhum livro alugado.</p>
         </div>
 
         <div v-else>
-          <RentedBookList
-            :books="rentedBooks"
-            @some-action="handleSomeAction"
-          />
+          <RentedBookList :rented-books="activeRentals" />
         </div>
       </div>
     </div>
@@ -20,33 +17,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { Book } from "@/types/book";
+import type { RentalData } from "@/types/rental";
 
-const rentedBooks = ref<
-  Array<
-    Book & {
-      paymentMethod?: string;
-      returnDate?: string;
-    }
-  >
->([]);
+const activeRentals = ref<RentalData[]>([]);
 
 onMounted(() => {
-  const rentalInfo = localStorage.getItem("rentalInfo");
-  if (rentalInfo) {
-    const parsedInfo = JSON.parse(rentalInfo);
-
-    rentedBooks.value = [
-      {
-        ...parsedInfo.book,
-        paymentMethod: parsedInfo.paymentMethod,
-        returnDate: parsedInfo.returnDate,
-      },
-    ];
+  const storedRentals = localStorage.getItem("activeRentals");
+  if (storedRentals) {
+    activeRentals.value = JSON.parse(storedRentals);
   }
 });
-
-const handleSomeAction = (book: Book) => {
-  alert(`Ação no livro: ${book.title}`);
-};
 </script>
