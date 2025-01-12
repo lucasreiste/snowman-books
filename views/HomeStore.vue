@@ -15,7 +15,7 @@
         </div>
 
         <div v-else>
-          <BookList :books="paginatedBooks" />
+          <BookList :books="paginatedBooks" @rent-book="handleRentBook" />
 
           <Pagination
             :total-items="books.length"
@@ -26,20 +26,31 @@
         </div>
       </div>
     </div>
+
+    <RentBookModal
+      v-if="selectedBook"
+      :book="selectedBook"
+      action-type="rent"
+      @confirm="confirmRent"
+      @close="closeModal"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import Pagination from "@/components/Pagination/Pagination.vue";
 import BookList from "@/components/Books/BookList/BookList.vue";
-import type { Book } from "@/types/book";
+import RentBookModal from "@/components/Books/RentBookModal/RentBookModal.vue";
 import { fetchBooks } from "@/services/bookService";
+import type { Book } from "@/types/book";
 
 const books = ref<Book[]>([]);
 const currentPage = ref<number>(1);
 const itemsPerPage = ref<number>(10);
 const isLoading = ref<boolean>(false);
 const error = ref<string | null>(null);
+
+const selectedBook = ref<Book | null>(null);
 
 const loadBooks = async () => {
   isLoading.value = true;
@@ -63,6 +74,18 @@ const paginatedBooks = computed<Book[]>(() => {
 const handlePageChange = (page: number) => {
   currentPage.value = page;
 };
+
+const handleRentBook = (book: Book) => {
+  selectedBook.value = book;
+};
+
+const closeModal = () => {
+  selectedBook.value = null;
+};
+
+const confirmRent = (book: Book) => {};
+
+const confirmPurchase = (book: Book) => {};
 
 onMounted(loadBooks);
 </script>

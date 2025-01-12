@@ -65,15 +65,13 @@
           <span class="font-semibold text-primary">
             {{ book.price > 0 ? `R$ ${book.price.toFixed(2)}` : "Gratuito" }}
           </span>
-          <a
+          <button
             v-if="book.buyLink"
-            :href="book.buyLink"
-            target="_blank"
-            rel="noopener noreferrer"
             class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm font-medium transition"
+            @click="emitRentBook(book)"
           >
-            Comprar
-          </a>
+            Alugar Livro
+          </button>
           <button
             v-else
             class="px-4 py-2 bg-gray-300 text-gray-600 rounded-md cursor-not-allowed text-sm font-medium"
@@ -88,6 +86,7 @@
 </template>
 
 <script lang="ts" setup>
+import { defineEmits, defineProps } from "vue";
 import type { Book } from "@/types/book";
 
 interface Props {
@@ -95,4 +94,12 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+
+const emits = defineEmits<{
+  (e: "rent-book", book: Book): void;
+}>();
+
+const emitRentBook = (book: Book) => {
+  emits("rent-book", book);
+};
 </script>
