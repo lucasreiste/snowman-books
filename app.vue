@@ -1,8 +1,3 @@
 <template>
-  <div>
-    <HomeStore />
-  </div>
+  <NuxtPage />
 </template>
-<script setup>
-import HomeStore from "@/views/HomeStore.vue";
-</script>

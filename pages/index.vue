@@ -28,9 +28,7 @@
     </div>
 
     <RentBookModal
-      v-if="selectedBook"
-      :book="selectedBook"
-      action-type="rent"
+      :open="isModalOpen"
       @confirm="confirmRent"
       @close="closeModal"
     />
@@ -38,11 +36,14 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed, onMounted } from "vue";
+import Header from "@/components/Header/Header.vue";
 import Pagination from "@/components/Pagination/Pagination.vue";
 import BookList from "@/components/Books/BookList/BookList.vue";
 import RentBookModal from "@/components/Books/RentBookModal/RentBookModal.vue";
 import { fetchBooks } from "@/services/bookService";
 import type { Book } from "@/types/book";
+import { usePurchaseStore } from "@/stores/usePurchaseStore";
 
 const books = ref<Book[]>([]);
 const currentPage = ref<number>(1);
@@ -50,42 +51,49 @@ const itemsPerPage = ref<number>(10);
 const isLoading = ref<boolean>(false);
 const error = ref<string | null>(null);
 
-const selectedBook = ref<Book | null>(null);
+const isModalOpen = ref<boolean>(false);
 
-const loadBooks = async () => {
+const purchaseStore = usePurchaseStore();
+
+async function loadBooks() {
   isLoading.value = true;
   const result = await fetchBooks();
-
   if (result.error) {
     error.value = result.error;
   } else if (result.books) {
     books.value = result.books;
   }
-
   isLoading.value = false;
-};
+}
 
-const paginatedBooks = computed<Book[]>(() => {
+onMounted(loadBooks);
+
+const paginatedBooks = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage.value;
   const end = start + itemsPerPage.value;
   return books.value.slice(start, end);
 });
 
-const handlePageChange = (page: number) => {
+function handlePageChange(page: number) {
   currentPage.value = page;
-};
+}
 
-const handleRentBook = (book: Book) => {
-  selectedBook.value = book;
-};
+function handleRentBook(book: Book) {
+  purchaseStore.setBook(book);
+  isModalOpen.value = true;
+}
 
-const closeModal = () => {
-  selectedBook.value = null;
-};
+function closeModal() {
+  isModalOpen.value = false;
+}
 
-const confirmRent = (book: Book) => {};
-
-const confirmPurchase = (book: Book) => {};
-
-onMounted(loadBooks);
+function confirmRent(book: Book) {
+  console.log("Aluguel confirmado para o livro:", book.title);
+  const rentalInfo = {
+    book: purchaseStore.book,
+    userInfo: purchaseStore.formData,
+  };
+  localStorage.setItem("rentalInfo", JSON.stringify(rentalInfo));
+  isModalOpen.value = false;
+}
 </script>
