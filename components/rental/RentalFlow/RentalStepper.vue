@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full items-start gap-2 mb-6">
-    <StepperItem
+    <RentalStepperItem
       v-for="step in steps"
       :key="step.step"
       :step="step.step"
@@ -12,10 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
-import StepperItem from "./StepperItem.vue";
-
-const props = defineProps<{
+defineProps<{
   steps: Array<{
     step: number;
     title: string;

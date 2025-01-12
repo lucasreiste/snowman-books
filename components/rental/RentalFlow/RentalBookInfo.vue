@@ -2,13 +2,12 @@
   <img
     :src="book.coverImage"
     :alt="book.title"
-    class="w-full h-auto rounded-lg shadow-md"
+    class="lg:w-full h-auto rounded-lg shadow-md"
   />
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
-const props = defineProps<{
+defineProps<{
   book: {
     coverImage: string;
     title: string;

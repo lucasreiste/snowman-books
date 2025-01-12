@@ -1,13 +1,12 @@
 <template>
   <div class="relative flex w-full flex-col items-center justify-center">
     <div
-      v-if="step !== lastStep"
+      v-if="!lastStep"
       class="absolute left-[calc(50%+20px)] right-[calc(-50%+10px)] top-5 block h-0.5 shrink-0 rounded-full bg-muted"
       :class="{
         'bg-primary': state === 'completed',
       }"
     />
-
     <Button
       :variant="buttonVariant"
       size="icon"
@@ -17,7 +16,6 @@
       <LucideCircle v-if="state === 'active'" />
       <LucideDot v-if="state === 'inactive'" />
     </Button>
-
     <div class="mt-5 flex flex-col items-center text-center">
       <h3
         :class="{ 'text-primary': state === 'active' }"
@@ -36,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
+import { defineProps, computed } from "vue";
 
 const props = defineProps<{
   step: number;

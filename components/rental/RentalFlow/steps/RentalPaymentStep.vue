@@ -20,47 +20,43 @@
         </span>
       </div>
     </div>
-
     <div v-else-if="selectedMethodId === 1">
       <h2 class="text-lg font-bold mb-4 text-primary">Cartão de Crédito</h2>
-      <form @submit.prevent="goToNextStep">
-        <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700">
-            Número do Cartão
-          </label>
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">
+          Número do Cartão
+        </label>
+        <Input
+          v-model="cardInfo.number"
+          type="text"
+          required
+          class="mt-1 block w-full"
+        />
+      </div>
+      <div class="mb-4 flex space-x-4">
+        <div class="w-1/2">
+          <label class="block text-sm font-medium text-gray-700"
+            >Validade</label
+          >
           <Input
-            v-model="formData.cardNumber"
+            v-model="cardInfo.expiry"
+            type="text"
+            required
+            placeholder="MM/AA"
+            class="mt-1 block w-full"
+          />
+        </div>
+        <div class="w-1/2">
+          <label class="block text-sm font-medium text-gray-700">CVV</label>
+          <Input
+            v-model="cardInfo.cvv"
             type="text"
             required
             class="mt-1 block w-full"
           />
         </div>
-        <div class="mb-4 flex space-x-4">
-          <div class="w-1/2">
-            <label class="block text-sm font-medium text-gray-700"
-              >Validade</label
-            >
-            <Input
-              v-model="formData.expiry"
-              type="text"
-              required
-              placeholder="MM/AA"
-              class="mt-1 block w-full"
-            />
-          </div>
-          <div class="w-1/2">
-            <label class="block text-sm font-medium text-gray-700">CVV</label>
-            <Input
-              v-model="formData.cvv"
-              type="text"
-              required
-              class="mt-1 block w-full"
-            />
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-
     <div v-else-if="selectedMethodId === 2">
       <h2 class="text-lg font-bold mb-2 text-primary">Pagamento via PIX</h2>
       <p class="mb-2">Escaneie o QR code ou copie o código abaixo:</p>
@@ -73,7 +69,6 @@
 Código PIX ...
       </textarea>
     </div>
-
     <div v-else-if="selectedMethodId === 3">
       <h2 class="text-lg font-bold mb-2 text-primary">Pagamento via Boleto</h2>
       <p class="mb-2">Use o código abaixo para pagar o boleto:</p>
@@ -81,7 +76,6 @@ Código PIX ...
 Código do Boleto ...
       </textarea>
     </div>
-
     <div v-else-if="selectedMethodId === 4">
       <h2 class="text-lg font-bold mb-2 text-primary">Pagamento via Bitcoin</h2>
       <p class="mb-2">Use o endereço abaixo para pagar com Bitcoin:</p>
@@ -93,19 +87,16 @@ Endereço Bitcoin ...
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
 import pixImage from "~/assets/img/paymentmethods/pix.png";
 import cardImage from "~/assets/img/paymentmethods/card.jpg";
 import boletoImage from "~/assets/img/paymentmethods/boleto.jpg";
 import bitcoinImage from "~/assets/img/paymentmethods/bitcoin.png";
 
-const props = defineProps<{
-  formData: {
-    cardNumber: string;
-    expiry: string;
-    cvv: string;
-  };
-}>();
+const cardInfo = reactive({
+  number: "",
+  expiry: "",
+  cvv: "",
+});
 
 const paymentMethods = [
   { id: 1, label: "Cartão", imgSrc: cardImage },
