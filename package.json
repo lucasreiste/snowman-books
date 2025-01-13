@@ -6,13 +6,16 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "test": "vitest --config ./vitest.config.ts",
+    "test:ci": "vitest --config ./vitest.config.ts --run",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "storybook": "storybook dev --port 6006",
     "build-storybook": "storybook build",
     "test:ui": "vitest --ui",
-    "test:watch": "vitest --config ./vitest.config.ts --watch"
+    "test:watch": "vitest --config ./vitest.config.ts --watch",
+    "prepare": "husky",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@nuxt/eslint": "^0.7.5",
@@ -58,6 +61,7 @@
     "@vue/test-utils": "^2.4.6",
     "eslint-plugin-vue": "^9.32.0",
     "happy-dom": "^16.5.3",
+    "husky": "^9.1.7",
     "jsdom": "^26.0.0",
     "playwright-core": "^1.49.1",
     "storybook": "^8.4.7",

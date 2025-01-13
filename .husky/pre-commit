@@ -1,0 +1,9 @@
+echo "🔍 Verificando o código..."
+
+echo "⚡ Executando lint..."
+npm run lint || exit 1
+
+echo "🧪 Executando testes..."
+npm run test:ci || exit 1
+
+echo "✅ Verificações concluídas com sucesso!"
