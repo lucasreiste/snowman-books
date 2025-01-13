@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { fileURLToPath } from "url";
+import path from "path";
+
 export default defineNuxtConfig({
   components: {
     dirs: [
@@ -18,16 +21,10 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "nuxt-lucide-icons",
     "@nuxtjs/i18n",
+    "@nuxt/test-utils/module",
   ],
   shadcn: {
-    /**
-     * Prefix for all the imported component
-     */
     prefix: "",
-    /**
-     * Directory that the component lives in.
-     * @default "./components/ui"
-     */
     componentDir: "./components/ui",
   },
   i18n: {
@@ -39,5 +36,18 @@ export default defineNuxtConfig({
     strategy: "prefix_except_default",
     detectBrowserLanguage: false,
     vueI18n: "./i18n.config.ts",
+  },
+  vite: {
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./", import.meta.url)),
+        "~": fileURLToPath(new URL("./", import.meta.url)),
+        "@components": path.resolve(__dirname, "./components"),
+        "@test": path.resolve(__dirname, "./test"),
+        "@stores": path.resolve(__dirname, "./stores"),
+        "@composables": path.resolve(__dirname, "./composables"),
+        "@types": path.resolve(__dirname, "./types"),
+      },
+    },
   },
 });

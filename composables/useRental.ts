@@ -1,5 +1,5 @@
 import type { Book } from "@/types/book";
-import type { RentalPersonalData, RentalData } from "@/types/rental";
+import type { RentalPersonalData } from "@/types/rental";
 
 export function useRental() {
   function calculatePrice(price: number, weeks: number): number {

@@ -119,8 +119,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from "vue-i18n";
 import type { RentalData } from "@/types/rental";
 import { useRental } from "@/composables/useRental";
+
 const { t } = useI18n();
 const { formatPrice } = useRental();
 
@@ -133,7 +135,7 @@ const rentalItem = props.rentalItem;
 const emit = defineEmits(["cancel-rental"]);
 
 const renewRental = () => {
-  alert("Renovando aluguel...");
+  alert("Renovando aluguel... (funcionalidade não implementada)");
 };
 
 const cancelRental = () => {

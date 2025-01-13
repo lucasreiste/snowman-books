@@ -42,7 +42,7 @@ export async function fetchBooks(
 
     return data.items.map(mapGoogleBookToBook);
   } catch (error) {
-    console.error("Erro ao buscar livros:", error);
+    //console.error("Erro ao buscar livros:", error);
     return [];
   }
 }

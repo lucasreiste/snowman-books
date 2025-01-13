@@ -26,6 +26,7 @@
         v-for="(rentalItem, index) in rentedBooks"
         :key="rentalItem.id || index"
         :rental-item="rentalItem"
+        data-testid="rented-book-item"
         @cancel-rental="$emit('cancel-rental', $event)"
       />
     </div>
@@ -33,7 +34,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from "vue-i18n";
 import type { RentalData } from "@/types/rental";
+
 const { t } = useI18n();
 
 defineProps<{

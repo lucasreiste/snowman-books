@@ -9,6 +9,7 @@
         :key="method.id"
         class="cursor-pointer flex flex-col items-center p-4 hover:shadow transition-shadow"
         @click="selectPaymentMethod(method.id)"
+        :data-testid="`payment-method-${method.key}`"
       >
         <img
           :src="method.imgSrc"
@@ -21,7 +22,9 @@
       </div>
     </div>
     <div v-else-if="selectedMethodId === 1">
-      <h2 class="text-lg font-bold mb-4 text-primary">Cartão de Crédito</h2>
+      <h2 class="text-lg font-bold mb-4 text-primary" data-testid="card-title">
+        Cartão de Crédito
+      </h2>
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700">
           Número do Cartão
@@ -31,6 +34,7 @@
           type="text"
           required
           class="mt-1 block w-full"
+          data-testid="card-number-input"
         />
       </div>
       <div class="mb-4 flex space-x-4">
@@ -58,10 +62,12 @@
       </div>
     </div>
     <div v-else-if="selectedMethodId === 2">
-      <h2 class="text-lg font-bold mb-2 text-primary">Pagamento via PIX</h2>
+      <h2 class="text-lg font-bold mb-2 text-primary" data-testid="pix-title">
+        Pagamento via PIX
+      </h2>
       <p class="mb-2">Escaneie o QR code ou copie o código abaixo:</p>
       <img
-        src="~/assets/img/paymentmethods/qrcode.png"
+        :src="qrcodeImage"
         alt="QR code para pagamento PIX"
         class="mt-2 mb-2 h-40 w-40 object-contain mx-auto"
       />
@@ -87,10 +93,13 @@ Endereço Bitcoin ...
 </template>
 
 <script lang="ts" setup>
+import { ref, reactive } from "vue";
+import qrcodeImage from "@/assets/img/paymentmethods/qrcode.png";
 import pixImage from "~/assets/img/paymentmethods/pix.png";
 import cardImage from "~/assets/img/paymentmethods/card.jpg";
 import boletoImage from "~/assets/img/paymentmethods/boleto.jpg";
 import bitcoinImage from "~/assets/img/paymentmethods/bitcoin.png";
+import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 

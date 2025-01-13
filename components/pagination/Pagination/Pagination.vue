@@ -2,6 +2,7 @@
   <div class="flex flex-col items-center gap-2">
     <div class="flex items-center gap-2">
       <Button
+        data-testid="prev-button"
         variant="outline"
         size="sm"
         :disabled="currentPage === 1"
@@ -15,6 +16,7 @@
         <Button
           v-for="page in totalPages"
           :key="page"
+          :data-testid="`page-button-${page}`"
           :variant="page === currentPage ? 'default' : 'outline'"
           size="sm"
           @click="emit('pageChange', page)"
@@ -24,6 +26,7 @@
       </div>
 
       <Button
+        data-testid="next-button"
         variant="outline"
         size="sm"
         :disabled="currentPage === totalPages"
@@ -34,7 +37,7 @@
       </Button>
     </div>
 
-    <p class="text-sm text-muted-foreground">
+    <p data-testid="items-info" class="text-sm text-muted-foreground">
       Mostrando {{ startItem }}-{{ endItem }} de {{ totalItems }} itens
     </p>
   </div>
@@ -43,7 +46,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { LucideChevronLeft, LucideChevronRight } from "lucide-vue-next";
-import { Button } from "@/components/ui/button";
 
 interface Props {
   totalItems: number;

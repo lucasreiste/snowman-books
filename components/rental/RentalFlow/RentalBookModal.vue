@@ -40,13 +40,15 @@
   </Dialog>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { computed, watch } from "vue";
 import { useRental } from "@/composables/useRental";
 import { useRentalStore } from "@/stores/useRentalStore";
 import RentalConfirmationStep from "./steps/RentalConfirmationStep.vue";
 import RentalPersonalDataStep from "./steps/RentalPersonalDataStep.vue";
 import RentalPaymentStep from "./steps/RentalPaymentStep.vue";
 import RentalSuccessStep from "./steps/RentalSuccessStep.vue";
+import { useI18n } from "vue-i18n";
 
 interface Step {
   step: number;
@@ -59,8 +61,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "close"): void;
-  (e: "confirm"): void;
+  (e: "close" | "confirm"): void;
 }>();
 
 const rentalStore = useRentalStore();

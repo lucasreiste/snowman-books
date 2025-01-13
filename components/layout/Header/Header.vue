@@ -58,7 +58,11 @@
 </template>
 
 <script setup>
-import logoSnow from "@/assets/logosnowof.png";
+import { ref, computed } from "vue";
+import { LucideMenu, LucideX } from "lucide-vue-next";
+import logoSnow from "@/assets/logo-snow.png";
+import { useI18n } from "vue-i18n";
+
 const { t } = useI18n();
 const localePath = useLocalePath();
 

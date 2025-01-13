@@ -80,8 +80,10 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, ref, onMounted } from "vue";
 import { useRental } from "@/composables/useRental";
 import { useRentalStore } from "@/stores/useRentalStore";
+import { useI18n } from "vue-i18n";
 const { t, locale } = useI18n();
 
 const rentalStore = useRentalStore();
