@@ -1,0 +1,151 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Pagination > should render correctly 1`] = `
+<div>
+  <div
+    class="flex flex-col items-center gap-2"
+  >
+    <div
+      class="flex items-center gap-2"
+    >
+      <button
+        data-testid="prev-button"
+        disabled=""
+      >
+        
+        <svg
+          class="lucide lucide-chevron-left-icon h-4 w-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m15 18-6-6 6-6"
+          />
+        </svg>
+        <span
+          class="ml-1"
+        >
+          Anterior
+        </span>
+        
+      </button>
+      <div
+        class="flex items-center gap-1"
+      >
+        
+        <button
+          data-testid="page-button-1"
+        >
+          
+          1
+          
+        </button>
+        <button
+          data-testid="page-button-2"
+        >
+          
+          2
+          
+        </button>
+        <button
+          data-testid="page-button-3"
+        >
+          
+          3
+          
+        </button>
+        <button
+          data-testid="page-button-4"
+        >
+          
+          4
+          
+        </button>
+        <button
+          data-testid="page-button-5"
+        >
+          
+          5
+          
+        </button>
+        <button
+          data-testid="page-button-6"
+        >
+          
+          6
+          
+        </button>
+        <button
+          data-testid="page-button-7"
+        >
+          
+          7
+          
+        </button>
+        <button
+          data-testid="page-button-8"
+        >
+          
+          8
+          
+        </button>
+        <button
+          data-testid="page-button-9"
+        >
+          
+          9
+          
+        </button>
+        <button
+          data-testid="page-button-10"
+        >
+          
+          10
+          
+        </button>
+        
+      </div>
+      <button
+        data-testid="next-button"
+      >
+        
+        <span
+          class="mr-1"
+        >
+          Próxima
+        </span>
+        <svg
+          class="lucide lucide-chevron-right-icon h-4 w-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m9 18 6-6-6-6"
+          />
+        </svg>
+        
+      </button>
+    </div>
+    <p
+      class="text-sm text-muted-foreground"
+      data-testid="items-info"
+    >
+       Mostrando 1-10 de 100 itens 
+    </p>
+  </div>
+</div>
+`;

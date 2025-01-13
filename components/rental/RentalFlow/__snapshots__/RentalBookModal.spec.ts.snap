@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RentalBookModal > should render correctly when open 1`] = `
+<div>
+  <div
+    data-testid="modal"
+  >
+    
+    <div
+      class="lg:max-w-2xl p-6 [&>button]:hidden"
+      data-testid="modal-content"
+    >
+      
+      <div
+        class="flex flex-col"
+      >
+        <rental-stepper-stub
+          current-step="1"
+          steps="[object Object],[object Object],[object Object],[object Object]"
+        />
+        <rental-confirmation-step-stub />
+        <div
+          class="mt-6 flex justify-end space-x-4"
+        >
+          <button>
+            
+            Fechar
+            
+          </button>
+          <!--v-if-->
+          <button
+            disabled=""
+          >
+            
+            Continuar
+            
+          </button>
+          <!--v-if-->
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+`;

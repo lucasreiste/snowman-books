@@ -1,0 +1,129 @@
+{
+  "books": {
+    "title": "Catálogo de Livros",
+    "searchResults": "Resultados da Busca",
+    "notFound": "Nenhum livro encontrado",
+    "loadError": "Erro ao carregar livros:",
+    "rentButton": "Alugar Livro",
+    "alreadyRented": "Já alugado",
+    "searchPlaceholder": "Busque por título, autor ou categoria...",
+    "searchButton": "Buscar",
+    "clearButton": "Limpar",
+    "details": {
+      "author": "Autor",
+      "categories": "Categorias",
+      "pages": "Páginas",
+      "language": "Idioma",
+      "pricePerWeek": "R$ {price}/semana"
+    }
+  },
+  "myBooks": {
+    "title": "Meus Livros Alugados",
+    "noRentals": "Nenhum livro alugado"
+  },
+  "language": {
+    "br": "PT",
+    "en": "EN"
+  },
+  "header": {
+    "search": {
+      "placeholder": "Busque por título, autor ou categoria...",
+      "button": "Buscar",
+      "clear": "Limpar"
+    }
+  },
+  "rental": {
+    "steps": {
+      "confirmation": {
+        "title": "Confirmação",
+        "description": "Confirme o aluguel do livro"
+      },
+      "personalData": {
+        "title": "Dados Pessoais",
+        "description": "Informe seus dados pessoais"
+      },
+      "payment": {
+        "title": "Pagamento",
+        "description": "Realize o pagamento"
+      },
+      "success": {
+        "title": "Sucesso",
+        "description": "Aluguel realizado com sucesso"
+      }
+    },
+    "buttons": {
+      "close": "Fechar",
+      "back": "Voltar",
+      "continue": "Continuar"
+    },
+    "confirmation": {
+      "title": "Alugar Livro",
+      "subtitle": "Tem certeza de que deseja alugar o livro",
+      "duration": "Duração do Aluguel:",
+      "pricePerWeek": "Preço por semana:",
+      "totalPrice": "Preço total:",
+      "showMore": "Mostrar mais",
+      "showLess": "Mostrar menos",
+      "weekOptions": {
+        "one": "7 dias (1 semana)",
+        "two": "14 dias (2 semanas)",
+        "three": "21 dias (3 semanas)"
+      }
+    },
+    "personalData": {
+      "name": "Nome",
+      "email": "Email",
+      "address": "Endereço"
+    },
+    "payment": {
+      "creditCard": {
+        "title": "Cartão de Crédito",
+        "number": "Número do Cartão",
+        "expiry": "Validade",
+        "cvv": "CVV",
+        "expiryPlaceholder": "MM/AA"
+      },
+      "pix": {
+        "title": "Pagamento via PIX",
+        "scanQR": "Escaneie o QR code ou copie o código abaixo:"
+      },
+      "boleto": {
+        "title": "Pagamento via Boleto",
+        "instructions": "Use o código abaixo para pagar o boleto:"
+      },
+      "bitcoin": {
+        "title": "Pagamento via Bitcoin",
+        "instructions": "Use o endereço abaixo para pagar com Bitcoin:"
+      },
+      "methods": {
+        "card": "Cartão",
+        "pix": "PIX",
+        "boleto": "Boleto",
+        "bitcoin": "Bitcoin"
+      }
+    },
+    "success": {
+      "title": "Aluguel Confirmado!",
+      "message": "Seu aluguel foi realizado com sucesso. Você pode conferir os detalhes na página Meus Livros Alugados."
+    },
+    "rentedBooks": {
+      "title": "Livros",
+      "empty": "Nenhum livro alugado no momento.",
+      "exploreBooks": "Explorar livros",
+      "details": {
+        "name": "Nome:",
+        "email": "Email:",
+        "address": "Endereço:",
+        "duration": "Duração:",
+        "days": "dias",
+        "total": "Total:",
+        "renew": "Renovar",
+        "cancel": "Cancelar Aluguel"
+      }
+    }
+  },
+  "search": {
+    "itemsPerPage": "Itens por página",
+    "enterToSearch": "Pressione Enter para buscar ou clique no botão Buscar"
+  }
+}
