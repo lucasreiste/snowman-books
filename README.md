@@ -25,9 +25,10 @@ A maior loja de aluguel de livros do Brasil!
 Os usuários podem:
 
 - Navegar pelos livros disponíveis.
-- Selecionar os livros que desejam alugar.
+- Selecionar os livros que desejam alugar (por 7,14 ou 21 dias, com alteração do preço)
 - Buscar livros por título ou autor.
 - Visualizar os livros já alugados.
+- Pagamento dos livros por Cartão, Boleto, Bitcoin ou PIX
 - Mudar a língua do site para inglês ou português.
 
 Além disso, todo o gerenciamento de estado é feito com o **Pinia**, integrando com o **local storage**. Isso assegura que, mesmo ao atualizar a página, os dados do livros alugados permanecem intactos, proporcionando uma melhor experiência. 🚀
