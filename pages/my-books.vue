@@ -23,6 +23,7 @@
           :key="renderKey"
           :rented-books="rentalStore.activeRentals"
           @cancel-rental="removeRental"
+          @renew-rental="renewRental"
         />
       </div>
     </div>
@@ -49,5 +50,11 @@ const removeRental = async (bookId: string) => {
   await rentalStore.removeRental(bookId);
   renderKey.value++;
   alert("Aluguel cancelado com sucesso.");
+};
+
+const renewRental = async (bookId: string) => {
+  await rentalStore.renewRental(bookId);
+  renderKey.value++;
+  alert("Aluguel renovado com sucesso.");
 };
 </script>

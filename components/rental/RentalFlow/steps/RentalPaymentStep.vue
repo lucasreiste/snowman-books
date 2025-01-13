@@ -1,5 +1,6 @@
 <template>
   <div>
+    Pagamento não disponível no momento, simulação do flow de pagamento:
     <div
       v-if="!selectedMethodId"
       class="grid grid-cols-2 gap-4 mb-6 justify-center"
@@ -8,8 +9,8 @@
         v-for="method in paymentMethods"
         :key="method.id"
         class="cursor-pointer flex flex-col items-center p-4 hover:shadow transition-shadow"
-        @click="selectPaymentMethod(method.id)"
         :data-testid="`payment-method-${method.key}`"
+        @click="selectPaymentMethod(method.id)"
       >
         <img
           :src="method.imgSrc"
@@ -94,7 +95,7 @@ Endereço Bitcoin ...
 
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import qrcodeImage from "@/assets/img/paymentmethods/qrcode.png";
+import qrcodeImage from "~/assets/img/paymentmethods/qrcode.png";
 import pixImage from "~/assets/img/paymentmethods/pix.png";
 import cardImage from "~/assets/img/paymentmethods/card.jpg";
 import boletoImage from "~/assets/img/paymentmethods/boleto.jpg";

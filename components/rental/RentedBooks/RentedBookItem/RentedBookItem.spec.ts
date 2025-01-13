@@ -121,17 +121,14 @@ describe("RentedBookItem", () => {
     expect(emitted()["cancel-rental"][0]).toEqual([mockRentalItem.book.id]);
   });
 
-  it("should show alert when renew button is clicked", async () => {
-    const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
-    renderComponent();
-
+  it("should emit renew-rental event when renew button is clicked", async () => {
+    const { emitted } = renderComponent();
     const renewButton = screen.getByRole("button", {
       name: /Renovar/i,
     });
     await fireEvent.click(renewButton);
 
-    expect(alertSpy).toHaveBeenCalledWith(
-      "Renovando aluguel... (funcionalidade não implementada)"
-    );
+    expect(emitted()["renew-rental"]).toBeTruthy();
+    expect(emitted()["renew-rental"][0]).toEqual([mockRentalItem.book.id]);
   });
 });

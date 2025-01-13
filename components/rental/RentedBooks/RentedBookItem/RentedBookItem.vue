@@ -132,10 +132,16 @@ const props = defineProps<{
 
 const rentalItem = props.rentalItem;
 
-const emit = defineEmits(["cancel-rental"]);
+const emit = defineEmits(["cancel-rental", "renew-rental"]);
 
 const renewRental = () => {
-  alert("Renovando aluguel... (funcionalidade não implementada)");
+  if (
+    confirm(
+      "Tem certeza que deseja renovar o aluguel por mais 7 dias? (sem custo adicional)"
+    )
+  ) {
+    emit("renew-rental", rentalItem.book.id);
+  }
 };
 
 const cancelRental = () => {

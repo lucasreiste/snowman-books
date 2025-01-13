@@ -89,5 +89,24 @@ export const useRentalStore = defineStore("rental", {
       );
       localStorage.setItem("activeRentals", JSON.stringify(this.activeRentals));
     },
+
+    renewRental(bookId: string) {
+      const rentalIndex = this.activeRentals.findIndex(
+        (rental) => rental.book.id === bookId
+      );
+
+      if (rentalIndex !== -1) {
+        const rental = this.activeRentals[rentalIndex];
+        rental.rentalDetails.duration =
+          Number(rental.rentalDetails.duration) + 7;
+
+        this.activeRentals[rentalIndex] = rental;
+
+        localStorage.setItem(
+          "activeRentals",
+          JSON.stringify(this.activeRentals)
+        );
+      }
+    },
   },
 });

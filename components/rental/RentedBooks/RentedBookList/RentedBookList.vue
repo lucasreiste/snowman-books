@@ -28,6 +28,7 @@
         :rental-item="rentalItem"
         data-testid="rented-book-item"
         @cancel-rental="$emit('cancel-rental', $event)"
+        @renew-rental="$emit('renew-rental', $event)"
       />
     </div>
   </section>
@@ -43,5 +44,5 @@ defineProps<{
   rentedBooks: RentalData[];
 }>();
 
-defineEmits(["cancel-rental"]);
+defineEmits(["cancel-rental", "renew-rental"]);
 </script>
