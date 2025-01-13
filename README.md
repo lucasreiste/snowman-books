@@ -71,6 +71,7 @@ O projeto foi desenvolvido utilizando ferramentas modernas e robustas para garan
 
 - ⚡ **[Vite](https://vitejs.dev/)**: Ferramenta para bundling e desenvolvimento rápido.
 - 🛡️ **[TypeScript](https://www.typescriptlang.org/)**: Tipagem estática para maior confiabilidade no código.
+- 🐶 **[Husky](https://typicode.github.io/husky/)**: Execução automatizada de git hooks para garantir qualidade do código.
 
 ---
 
@@ -148,6 +149,7 @@ snowman-books/
 - **`npm run build`**: Compila a aplicação para produção.
 - **`npm run generate`**: Gera arquivos estáticos para deploy.
 - **`npm run test`**: Executa testes automatizados.
+- **`git commit`**: Executa automaticamente lint e testes através do Husky antes do commit.
 
 ---
 
@@ -163,13 +165,12 @@ npm run test
 
 ## 🎨 Demonstração Visual
 
-| **Página Inicial**                            | **Detalhes do Livro**                            | **Livros Alugados**                            |
-| --------------------------------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| ![Página Inicial](./assets/screenshots/1.png) | ![Detalhes do Livro](./assets/screenshots/2.png) | ![Livros Alugados](./assets/screenshots/3.png) |
+| **Página Inicial**                            | **Detalhes do Livro**                            | **Livros Alugados**                            | **Pre-commit Hook**                                    |
+| --------------------------------------------- | ------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------ |
+| ![Página Inicial](./assets/screenshots/1.png) | ![Detalhes do Livro](./assets/screenshots/2.png) | ![Livros Alugados](./assets/screenshots/3.png) | ![Pre-commit Hook (Husky)](./assets/screenshots/4.png) |
 
 ---
 
 ## 📜 Licença
 
 Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](./LICENSE) para mais informações.
-
