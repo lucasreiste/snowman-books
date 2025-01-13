@@ -7,7 +7,7 @@ exports[`RentalBookModal > should render correctly when open 1`] = `
   >
     
     <div
-      class="lg:max-w-2xl p-6"
+      class="lg:max-w-2xl p-6 [&>button]:hidden"
       data-testid="modal-content"
     >
       
