@@ -14,7 +14,8 @@
       "pages": "Pages",
       "language": "Language",
       "pricePerWeek": "$ {price}/week"
-    }
+    },
+    "alreadyRented": "This book is already rented."
   },
   "myBooks": {
     "title": "Rented Books",
@@ -103,10 +104,10 @@
     },
     "success": {
       "title": "Rental Confirmed!",
-      "message": "Your rental has been successfully completed. You will receive a confirmation email."
+      "message": "Your rental has been successfully completed. See more details in the Rented Books section."
     },
     "rentedBooks": {
-      "title": "Rented Books",
+      "title": "Books",
       "empty": "No books rented at the moment.",
       "exploreBooks": "Explore books",
       "details": {
@@ -116,7 +117,8 @@
         "duration": "Duration:",
         "days": "days",
         "total": "Total:",
-        "renew": "Renew"
+        "renew": "Renew",
+        "cancel": "Cancel Rental"
       }
     }
   },

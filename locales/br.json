@@ -5,6 +5,7 @@
     "notFound": "Nenhum livro encontrado",
     "loadError": "Erro ao carregar livros:",
     "rentButton": "Alugar Livro",
+    "alreadyRented": "Já alugado",
     "searchPlaceholder": "Busque por título, autor ou categoria...",
     "searchButton": "Buscar",
     "clearButton": "Limpar",
@@ -103,10 +104,10 @@
     },
     "success": {
       "title": "Aluguel Confirmado!",
-      "message": "Seu aluguel foi realizado com sucesso. Você receberá uma confirmação por email."
+      "message": "Seu aluguel foi realizado com sucesso. Você pode conferir os detalhes na página Meus Livros Alugados."
     },
     "rentedBooks": {
-      "title": "Livros Alugados",
+      "title": "Livros",
       "empty": "Nenhum livro alugado no momento.",
       "exploreBooks": "Explorar livros",
       "details": {
@@ -116,7 +117,8 @@
         "duration": "Duração:",
         "days": "dias",
         "total": "Total:",
-        "renew": "Renovar"
+        "renew": "Renovar",
+        "cancel": "Cancelar Aluguel"
       }
     }
   },
