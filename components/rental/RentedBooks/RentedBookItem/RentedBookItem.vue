@@ -103,7 +103,7 @@
                 {{ formatPrice(rentalItem.rentalDetails.totalPrice) }}
               </span>
             </div>
-            <div class="flex gap-2">
+            <div class="flex flex-col md:flex-row gap-2 mt-3">
               <Button variant="default" @click="renewRental">
                 {{ t("rental.rentedBooks.details.renew") }}
               </Button>
