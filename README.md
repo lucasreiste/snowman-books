@@ -1,28 +1,46 @@
-# 📚 Snowman Books
-
+<br />
+<div align="center">
 <p align="center">
   <img src="./assets/logo-snow.png" alt="Snowman Books Logo" width="200">
 </p>
 
-**Snowman Books** é um projeto desenvolvido como parte de um teste técnico para a **Snowlabs**. Este site moderno e funcional foi criado para oferecer uma experiência completa de aluguel de livros, utilizando a integração com a API do Google Books para garantir uma experiência realista e escalável.
+  <h3 align="center">Snowman Books</h3>
+
+  <p align="center">
+A maior loja de aluguel de livros do Brasil!
+    <br />
+    <br />
+    <a href="https://snowmanbooks.netlify.app/">Acessar o site</a>
+    ·
+    <a href="https://github.com/lucasreiste/snowman-bookstore/issues">Comunicar um bug</a>
+    ·
+    <a href="https://github.com/lucasreiste/snowman-bookstore/issues">Pedir novas funcionalidades</a>
+  </p>
+</div>
+
+## Sobre o Projeto
+
+**Snowman Books** é um projeto desenvolvido como parte de um teste técnico para a **Snowlabs**. Este site foi criado para oferecer uma experiência completa de aluguel de livros, utilizando a integração com a API do Google Books para garantir uma experiência realista e escalável.
 
 Os usuários podem:
 
 - Navegar pelos livros disponíveis.
-- Selecionar os livros que desejam alugar.
+- Selecionar os livros que desejam alugar (por 7,14 ou 21 dias, com alteração do preço)
 - Buscar livros por título ou autor.
 - Visualizar os livros já alugados.
-- Mudar a lingua do site para inglês ou português.
+- Pagamento dos livros por Cartão, Boleto, Bitcoin ou PIX
+- Mudar a língua do site para inglês ou português.
 
-Além disso, todo o gerenciamento de estado é feito com o **Pinia**, sincronizado com o **local storage**. Isso assegura que, mesmo ao atualizar a página, os dados do usuário permanecem intactos, proporcionando uma melhor experiência. 🚀
+Além disso, todo o gerenciamento de estado é feito com o **Pinia**, integrando com o **local storage**. Isso assegura que, mesmo ao atualizar a página, os dados do livros alugados permanecem intactos, proporcionando uma melhor experiência. 🚀
 
 ## 🚀 Funcionalidades
 
 - 🔍 **Busca por livros**: Integração com a API do Google Books para buscas em tempo real.
 - 📚 **Seleção de livros**: Interface intuitiva para escolher os livros para aluguel.
 - 🗂️ **Gerenciamento de aluguéis**: Visualização simples e prática dos livros já alugados.
+- 🌐 **Suporte a idiomas**: Alteração entre inglês e português com **i18n**.
 - 📱 **Design responsivo**: Interface adaptada para qualquer dispositivo.
-- 🔒 **Persistência de dados**: Informações armazenadas no **local storage** usando Pinia, garantindo que os dados não sejam perdidos mesmo após o recarregamento da página.
+- 🔒 **Persistência de dados**: Informações armazenadas no **local storage** integrando com o Pinia, garantindo que os dados não sejam perdidos mesmo após o recarregamento da página.
 
 ---
 
@@ -36,8 +54,9 @@ O projeto foi desenvolvido utilizando ferramentas modernas e robustas para garan
 - 🖌️ **[Vue.js](https://vuejs.org/)**: Biblioteca JavaScript para construção de interfaces dinâmicas.
 - 🗂️ **[Pinia](https://pinia.vuejs.org/)**: Gerenciamento de estado simples e poderoso.
 - 🎨 **[Tailwind CSS](https://tailwindcss.com/)**: Framework CSS utilitário para estilização rápida e consistente.
-- 🧩 **[Radix Vue](https://radix-vue.com/)**: Componentes acessíveis e estilizados para uma experiência de usuário aprimorada.
+- 🧩 **[shadcn/vue](https://github.com/shadcn/vue)**: Componentes acessíveis e estilizados para uma experiência de usuário aprimorada.
 - ✨ **[Lucide Icons](https://lucide.dev/)**: Conjunto de ícones modernos e personalizáveis.
+- 🌐 **[i18n](https://kazupon.github.io/vue-i18n/)**: Suporte à internacionalização para múltiplos idiomas.
 
 ### **Integração e APIs**
 
@@ -47,7 +66,6 @@ O projeto foi desenvolvido utilizando ferramentas modernas e robustas para garan
 
 - 🧪 **[Vitest](https://vitest.dev/)**: Framework de testes moderno e rápido.
 - 🛠️ **[Testing Library](https://testing-library.com/)**: Ferramenta para testes baseados em interação do usuário.
-- 📖 **[Storybook](https://storybook.js.org/)**: Documentação visual para componentes UI.
 
 ### **DevOps e Build**
 
@@ -70,7 +88,7 @@ Certifique-se de ter instalado:
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/snowman-books.git
+   git clone https://github.com/lucasreiste/snowman-books.git
    cd snowman-books
    ```
 
@@ -82,14 +100,7 @@ Certifique-se de ter instalado:
    yarn install
    ```
 
-3. Configure as variáveis de ambiente:
-
-   - Crie um arquivo `.env` na raiz do projeto e configure a API Key do Google Books:
-     ```env
-     GOOGLE_BOOKS_API_KEY=your_api_key_here
-     ```
-
-4. Inicie o servidor de desenvolvimento:
+3. Inicie o servidor de desenvolvimento:
 
    ```bash
    npm run dev
@@ -97,7 +108,7 @@ Certifique-se de ter instalado:
    yarn dev
    ```
 
-5. Acesse o site no navegador:
+4. Acesse o site no navegador:
    - `http://localhost:3000`
 
 ---
@@ -125,7 +136,6 @@ snowman-books/
 ├── stores/          # Gerenciamento de estado com Pinia
 ├── test/            # Testes unitários e de integração
 ├── types/           # Definições de tipos TypeScript
-├── .storybook/      # Configuração do Storybook
 ├── nuxt.config.ts   # Configuração principal do Nuxt
 └── package.json     # Dependências e scripts do projeto
 ```
@@ -143,7 +153,7 @@ snowman-books/
 
 ## 🛡️ Testes
 
-Este projeto inclui testes automatizados para garantir funcionalidade e qualidade. Para executar os testes:
+Este projeto inclui testes unitários. Para executar os testes:
 
 ```bash
 npm run test
@@ -162,3 +172,4 @@ npm run test
 ## 📜 Licença
 
 Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](./LICENSE) para mais informações.
+
