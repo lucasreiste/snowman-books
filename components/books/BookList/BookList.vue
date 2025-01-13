@@ -104,9 +104,9 @@ interface Emits {
   (e: "update:itemsPerPage", value: number): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   itemsPerPage: 10,
-  rentedBookIds: [],
+  rentedBookIds: () => [],
 });
 
 const emits = defineEmits<Emits>();

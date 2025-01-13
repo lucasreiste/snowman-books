@@ -22,13 +22,7 @@ export interface RentalDetails {
   totalPrice: number;
 }
 
-export interface PaymentDetails {
-  method: string | null;
-  details: Record<string, any>;
-}
-
 export interface RentalData {
   personalData: RentalPersonalData;
   rentalDetails: RentalDetails;
-  payment: PaymentDetails;
 }
