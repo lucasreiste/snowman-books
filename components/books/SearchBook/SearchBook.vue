@@ -5,7 +5,7 @@
         <div class="relative flex-1">
           <Input
             v-model="searchTerm"
-            placeholder="Busque por título, autor ou categoria..."
+            :placeholder="t('books.searchPlaceholder')"
             class="pl-10"
           >
             <template #leading>
@@ -15,7 +15,7 @@
         </div>
         <Button type="submit" class="gap-2">
           <LucideSearch class="w-4 h-4" />
-          <span>Buscar</span>
+          <span>{{ t("books.searchButton") }}</span>
         </Button>
         <Button
           type="button"
@@ -24,14 +24,14 @@
           @click="clearSearchTerm"
         >
           <LucideX class="w-4 h-4" />
-          <span>Limpar</span>
+          <span>{{ t("books.clearButton") }}</span>
         </Button>
       </div>
       <div
         v-if="searchTerm"
         class="mt-2 text-sm text-muted-foreground text-center"
       >
-        Pressione Enter para buscar ou clique no botão Buscar
+        {{ t("search.enterToSearch") }}
       </div>
     </form>
   </div>
@@ -42,6 +42,7 @@ import { ref } from "vue";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LucideSearch, LucideX } from "lucide-vue-next";
+const { t } = useI18n();
 
 interface Emits {
   (e: "search-book", term: string): void;

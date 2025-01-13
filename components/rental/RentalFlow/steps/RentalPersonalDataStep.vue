@@ -1,6 +1,8 @@
 <template>
   <div class="mb-4">
-    <label class="block text-sm font-medium text-gray-700">Nome</label>
+    <label class="block text-sm font-medium text-gray-700">{{
+      t("rental.personalData.name")
+    }}</label>
     <Input
       v-model="formData.name"
       type="text"
@@ -9,7 +11,9 @@
     />
   </div>
   <div class="mb-4">
-    <label class="block text-sm font-medium text-gray-700">Email</label>
+    <label class="block text-sm font-medium text-gray-700">{{
+      t("rental.personalData.email")
+    }}</label>
     <Input
       v-model="formData.email"
       type="email"
@@ -18,7 +22,9 @@
     />
   </div>
   <div class="mb-4">
-    <label class="block text-sm font-medium text-gray-700">Endereço</label>
+    <label class="block text-sm font-medium text-gray-700">{{
+      t("rental.personalData.address")
+    }}</label>
     <Input
       v-model="formData.address"
       type="text"
@@ -37,4 +43,6 @@ const formData = computed({
   get: () => rentalStore.personalData,
   set: (value) => rentalStore.updatePersonalData(value),
 });
+
+const { t } = useI18n();
 </script>

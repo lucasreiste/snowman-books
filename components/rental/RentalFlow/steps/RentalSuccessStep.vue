@@ -1,10 +1,11 @@
 <template>
   <div class="text-center">
     <LucideCheck class="mx-auto h-12 w-12 text-green-500" />
-    <h3 class="mt-4 text-lg font-medium text-gray-900">Aluguel Confirmado!</h3>
+    <h3 class="mt-4 text-lg font-medium text-gray-900">
+      {{ t("rental.success.title") }}
+    </h3>
     <p class="mt-2 text-sm text-gray-600">
-      Seu aluguel foi realizado com sucesso. Você receberá uma confirmação por
-      email.
+      {{ t("rental.success.message") }}
     </p>
     <div class="mt-4">
       <img
@@ -27,4 +28,5 @@
 import { useRentalStore } from "@/stores/useRentalStore";
 
 const rentalStore = useRentalStore();
+const { t } = useI18n();
 </script>

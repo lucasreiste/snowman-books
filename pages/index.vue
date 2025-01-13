@@ -4,7 +4,7 @@
       <div class="max-w-7xl mx-auto">
         <SearchBook @search-book="handleSearch" @clear-search="clearSearch" />
         <h2 class="text-3xl font-bold mb-8 text-center">
-          {{ searchQuery ? "Resultados da Busca" : "Livros Disponíveis" }}
+          {{ searchQuery ? $t("books.searchResults") : $t("books.title") }}
         </h2>
 
         <template v-if="isLoading">
@@ -13,7 +13,7 @@
 
         <template v-else>
           <div v-if="error" class="text-center text-red-500">
-            <p class="text-xl">Erro ao carregar livros: {{ error }}</p>
+            <p class="text-xl">{{ $t("books.loadError") }} {{ error }}</p>
           </div>
 
           <div v-else-if="books.length > 0">
@@ -31,7 +31,7 @@
           </div>
 
           <div v-else class="text-center text-gray-600">
-            <p class="text-xl">Nenhum livro encontrado.</p>
+            <p class="text-xl">{{ $t("books.notFound") }}</p>
           </div>
         </template>
       </div>

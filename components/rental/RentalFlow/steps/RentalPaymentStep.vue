@@ -16,7 +16,7 @@
           class="w-28 h-28 object-contain"
         />
         <span class="mt-3 text-lg font-semibold text-gray-600">
-          {{ method.label }}
+          {{ t(`rental.payment.methods.${method.key}`) }}
         </span>
       </div>
     </div>
@@ -92,6 +92,8 @@ import cardImage from "~/assets/img/paymentmethods/card.jpg";
 import boletoImage from "~/assets/img/paymentmethods/boleto.jpg";
 import bitcoinImage from "~/assets/img/paymentmethods/bitcoin.png";
 
+const { t } = useI18n();
+
 const cardInfo = reactive({
   number: "",
   expiry: "",
@@ -99,10 +101,10 @@ const cardInfo = reactive({
 });
 
 const paymentMethods = [
-  { id: 1, label: "Cartão", imgSrc: cardImage },
-  { id: 2, label: "PIX", imgSrc: pixImage },
-  { id: 3, label: "Boleto", imgSrc: boletoImage },
-  { id: 4, label: "Bitcoin", imgSrc: bitcoinImage },
+  { id: 1, key: "card", imgSrc: cardImage },
+  { id: 2, key: "pix", imgSrc: pixImage },
+  { id: 3, key: "boleto", imgSrc: boletoImage },
+  { id: 4, key: "bitcoin", imgSrc: bitcoinImage },
 ];
 
 const selectedMethodId = ref<number | null>(null);

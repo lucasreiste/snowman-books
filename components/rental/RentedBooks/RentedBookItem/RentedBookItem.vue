@@ -57,42 +57,55 @@
           </p>
         </div>
 
-        <Separator />
-
         <div class="space-y-2">
           <div class="grid grid-cols-2 gap-2 text-sm">
             <div class="flex items-center gap-1">
               <LucideUser class="w-4 h-4 text-muted-foreground" />
-              <span class="font-medium">Nome:</span>
+              <span class="font-medium">{{
+                t("rental.rentedBooks.details.name")
+              }}</span>
               <span class="truncate">{{ rentalItem.personalData.name }}</span>
             </div>
             <div class="flex items-center gap-1">
               <LucideMail class="w-4 h-4 text-muted-foreground" />
-              <span class="font-medium">Email:</span>
+              <span class="font-medium">{{
+                t("rental.rentedBooks.details.email")
+              }}</span>
               <span class="truncate">{{ rentalItem.personalData.email }}</span>
             </div>
             <div class="flex items-center gap-1">
               <LucideMapPin class="w-4 h-4 text-muted-foreground" />
-              <span class="font-medium">Endereço:</span>
+              <span class="font-medium">{{
+                t("rental.rentedBooks.details.address")
+              }}</span>
               <span class="truncate">{{
                 rentalItem.personalData.address
               }}</span>
             </div>
             <div class="flex items-center gap-1">
               <LucideClock class="w-4 h-4 text-muted-foreground" />
-              <span class="font-medium">Duração:</span>
-              <span>{{ rentalItem.rentalDetails.duration }} dias</span>
+              <span class="font-medium">{{
+                t("rental.rentedBooks.details.duration")
+              }}</span>
+              <span
+                >{{ rentalItem.rentalDetails.duration }}
+                {{ t("rental.rentedBooks.details.days") }}</span
+              >
             </div>
           </div>
 
           <div class="flex items-center justify-between">
             <div class="text-sm">
-              <span class="font-medium">Total:</span>
+              <span class="font-medium">{{
+                t("rental.rentedBooks.details.total")
+              }}</span>
               <span class="text-primary ml-1">
                 {{ formatPrice(rentalItem.rentalDetails.totalPrice) }}
               </span>
             </div>
-            <Button variant="default" @click="renewRental"> Renovar </Button>
+            <Button variant="default" @click="renewRental">
+              {{ t("rental.rentedBooks.details.renew") }}
+            </Button>
           </div>
         </div>
       </CardContent>
@@ -103,6 +116,7 @@
 <script lang="ts" setup>
 import type { RentalData } from "@/types/rental";
 import { useRental } from "@/composables/useRental";
+const { t } = useI18n();
 
 defineProps<{
   rentalItem: RentalData;

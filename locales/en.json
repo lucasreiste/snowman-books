@@ -1,0 +1,127 @@
+{
+  "books": {
+    "title": "Available Books for Rent",
+    "searchResults": "Search Results",
+    "notFound": "No books found",
+    "loadError": "Error loading books:",
+    "rentButton": "Rent Book",
+    "searchPlaceholder": "Search by title, author or category...",
+    "searchButton": "Search",
+    "clearButton": "Clear",
+    "details": {
+      "author": "Author",
+      "categories": "Categories",
+      "pages": "Pages",
+      "language": "Language",
+      "pricePerWeek": "$ {price}/week"
+    }
+  },
+  "myBooks": {
+    "title": "Rented Books",
+    "noRentals": "No books rented"
+  },
+  "language": {
+    "br": "PT",
+    "en": "EN"
+  },
+  "header": {
+    "search": {
+      "placeholder": "Search by title, author or category...",
+      "button": "Search",
+      "clear": "Clear"
+    }
+  },
+  "rental": {
+    "steps": {
+      "confirmation": {
+        "title": "Confirmation",
+        "description": "Confirm book rental"
+      },
+      "personalData": {
+        "title": "Personal Data",
+        "description": "Enter your personal information"
+      },
+      "payment": {
+        "title": "Payment",
+        "description": "Complete payment"
+      },
+      "success": {
+        "title": "Success",
+        "description": "Rental completed successfully"
+      }
+    },
+    "buttons": {
+      "close": "Close",
+      "back": "Back",
+      "continue": "Continue"
+    },
+    "confirmation": {
+      "title": "Rent Book",
+      "subtitle": "Are you sure you want to rent the book",
+      "duration": "Rental Duration:",
+      "pricePerWeek": "Price per week:",
+      "totalPrice": "Total price:",
+      "showMore": "Show more",
+      "showLess": "Show less",
+      "weekOptions": {
+        "one": "7 days (1 week)",
+        "two": "14 days (2 weeks)",
+        "three": "21 days (3 weeks)"
+      }
+    },
+    "personalData": {
+      "name": "Name",
+      "email": "Email",
+      "address": "Address"
+    },
+    "payment": {
+      "creditCard": {
+        "title": "Credit Card",
+        "number": "Card Number",
+        "expiry": "Expiry Date",
+        "cvv": "CVV",
+        "expiryPlaceholder": "MM/YY"
+      },
+      "pix": {
+        "title": "PIX Payment",
+        "scanQR": "Scan the QR code or copy the code below:"
+      },
+      "boleto": {
+        "title": "Bank Slip Payment",
+        "instructions": "Use the code below to pay the bank slip:"
+      },
+      "bitcoin": {
+        "title": "Bitcoin Payment",
+        "instructions": "Use the address below to pay with Bitcoin:"
+      },
+      "methods": {
+        "card": "Card",
+        "pix": "PIX",
+        "boleto": "Bank Slip",
+        "bitcoin": "Bitcoin"
+      }
+    },
+    "success": {
+      "title": "Rental Confirmed!",
+      "message": "Your rental has been successfully completed. You will receive a confirmation email."
+    },
+    "rentedBooks": {
+      "title": "Rented Books",
+      "empty": "No books rented at the moment.",
+      "exploreBooks": "Explore books",
+      "details": {
+        "name": "Name:",
+        "email": "Email:",
+        "address": "Address:",
+        "duration": "Duration:",
+        "days": "days",
+        "total": "Total:",
+        "renew": "Renew"
+      }
+    }
+  },
+  "search": {
+    "itemsPerPage": "Items per page",
+    "enterToSearch": "Press Enter to search or click the Search button"
+  }
+}

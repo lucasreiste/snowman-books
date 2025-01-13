@@ -1,8 +1,8 @@
 <template>
   <div class="flex items-center">
-    <label for="itemsPerPage" class="mr-2 text-sm text-gray-600"
-      >Itens por página:</label
-    >
+    <label for="itemsPerPage" class="mr-2 text-sm text-gray-600">
+      {{ t("search.itemsPerPage") }}:
+    </label>
     <select
       id="itemsPerPage"
       v-model="selected"
@@ -18,6 +18,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from "vue";
+const { t } = useI18n();
 
 const props = defineProps<{
   modelValue: number;

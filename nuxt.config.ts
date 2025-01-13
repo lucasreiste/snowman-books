@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@nuxtjs/color-mode",
     "nuxt-lucide-icons",
+    "@nuxtjs/i18n",
   ],
   shadcn: {
     /**
@@ -28,5 +29,15 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: "./components/ui",
+  },
+  i18n: {
+    locales: [
+      { code: "en", language: "en-US" },
+      { code: "br", language: "pt-BR" },
+    ],
+    defaultLocale: "br",
+    strategy: "prefix_except_default",
+    detectBrowserLanguage: false,
+    vueI18n: "./i18n.config.ts",
   },
 });

@@ -10,14 +10,14 @@
             variant="secondary"
             @click="handleClose"
           >
-            Fechar
+            {{ t("rental.buttons.close") }}
           </Button>
           <Button
             v-if="rentalStore.currentStep > 1"
             variant="secondary"
             @click="rentalStore.previousStep"
           >
-            Voltar
+            {{ t("rental.buttons.back") }}
           </Button>
           <Button
             v-if="rentalStore.currentStep < steps.length"
@@ -25,14 +25,14 @@
             :disabled="isStepInvalid"
             @click="handleNextStep"
           >
-            Continuar
+            {{ t("rental.buttons.continue") }}
           </Button>
           <Button
             v-if="rentalStore.currentStep === steps.length"
             variant="default"
             @click="handleConfirm"
           >
-            Fechar
+            {{ t("rental.buttons.close") }}
           </Button>
         </div>
       </div>
@@ -64,16 +64,29 @@ const emit = defineEmits<{
 
 const rentalStore = useRentalStore();
 const rental = useRental();
+const { t } = useI18n();
 
 const steps: Step[] = [
-  { step: 1, title: "Confirmação", description: "Confirme o aluguel do livro" },
+  {
+    step: 1,
+    title: t("rental.steps.confirmation.title"),
+    description: t("rental.steps.confirmation.description"),
+  },
   {
     step: 2,
-    title: "Dados Pessoais",
-    description: "Informe seus dados pessoais",
+    title: t("rental.steps.personalData.title"),
+    description: t("rental.steps.personalData.description"),
   },
-  { step: 3, title: "Pagamento", description: "Realize o pagamento" },
-  { step: 4, title: "Sucesso", description: "Aluguel realizado com sucesso" },
+  {
+    step: 3,
+    title: t("rental.steps.payment.title"),
+    description: t("rental.steps.payment.description"),
+  },
+  {
+    step: 4,
+    title: t("rental.steps.success.title"),
+    description: t("rental.steps.success.description"),
+  },
 ];
 
 const stepComponents: {

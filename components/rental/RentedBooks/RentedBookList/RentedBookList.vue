@@ -1,7 +1,9 @@
 <template>
   <section class="max-w-7xl mx-auto px-4 py-8 space-y-6">
     <header class="flex items-center justify-between">
-      <h2 class="text-2xl font-bold tracking-tight">Livros Alugados</h2>
+      <h2 class="text-2xl font-bold tracking-tight">
+        {{ t("rental.rentedBooks.title") }}
+      </h2>
     </header>
 
     <div
@@ -10,10 +12,12 @@
     >
       <LucideBookOpen class="h-12 w-12 text-muted-foreground mb-4" />
       <p class="text-xl text-muted-foreground">
-        Nenhum livro alugado no momento.
+        {{ t("rental.rentedBooks.empty") }}
       </p>
       <Button variant="outline" class="mt-4" as-child>
-        <NuxtLink to="/books">Explorar livros</NuxtLink>
+        <NuxtLink to="/books">{{
+          t("rental.rentedBooks.exploreBooks")
+        }}</NuxtLink>
       </Button>
     </div>
 
@@ -29,6 +33,7 @@
 
 <script lang="ts" setup>
 import type { RentalData } from "@/types/rental";
+const { t } = useI18n();
 
 defineProps<{
   rentedBooks: RentalData[];
