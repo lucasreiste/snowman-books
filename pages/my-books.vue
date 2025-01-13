@@ -6,12 +6,25 @@
           {{ $t("myBooks.title") }}
         </h2>
 
-        <div v-if="activeRentals.length === 0" class="text-center">
+        <div v-if="isLoading" class="text-center">
+          <div class="flex justify-center">
+            <LucideLoader />
+          </div>
+        </div>
+
+        <div
+          v-else-if="rentalStore.activeRentals.length === 0"
+          class="text-center"
+        >
           <p class="text-xl text-gray-600">{{ $t("myBooks.noRentals") }}</p>
         </div>
 
         <div v-else>
-          <RentedBookList :rented-books="activeRentals" />
+          <RentedBookList
+            :key="renderKey"
+            :rented-books="rentalStore.activeRentals"
+            @cancel-rental="removeRental"
+          />
         </div>
       </div>
     </div>
@@ -19,14 +32,24 @@
 </template>
 
 <script lang="ts" setup>
-import type { RentalData } from "@/types/rental";
+import { useRentalStore } from "@/stores/useRentalStore";
+import { ref, onMounted } from "vue";
 
-const activeRentals = ref<RentalData[]>([]);
+const rentalStore = useRentalStore();
+const isLoading = ref(true);
+const renderKey = ref(0);
 
-onMounted(() => {
-  const storedRentals = localStorage.getItem("activeRentals");
-  if (storedRentals) {
-    activeRentals.value = JSON.parse(storedRentals);
+onMounted(async () => {
+  try {
+    rentalStore.initializeFromLocalStorage();
+  } finally {
+    isLoading.value = false;
   }
 });
+
+const removeRental = async (bookId: string) => {
+  rentalStore.removeRental(bookId);
+  renderKey.value++;
+  alert("Aluguel cancelado com sucesso.");
+};
 </script>

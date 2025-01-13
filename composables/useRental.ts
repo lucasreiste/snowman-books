@@ -18,17 +18,6 @@ export function useRental() {
     return Boolean(name && address && email);
   }
 
-  async function saveRental(rentalData: RentalData): Promise<boolean> {
-    const existingRentals = JSON.parse(
-      localStorage.getItem("activeRentals") || "[]"
-    );
-    localStorage.setItem(
-      "activeRentals",
-      JSON.stringify([...existingRentals, rentalData])
-    );
-    return true;
-  }
-
   function initializeRental(
     book: Book,
     duration: number = 7
@@ -44,7 +33,6 @@ export function useRental() {
     calculatePrice,
     formatPrice,
     validatePersonalData,
-    saveRental,
     initializeRental,
   };
 }

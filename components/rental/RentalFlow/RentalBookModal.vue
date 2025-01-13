@@ -60,6 +60,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "close"): void;
+  (e: "confirm"): void;
 }>();
 
 const rentalStore = useRentalStore();
@@ -124,15 +125,8 @@ async function handleNextStep() {
 }
 
 async function handleConfirm() {
-  const success = await rental.saveRental({
-    book: rentalStore.selectedBook,
-    personalData: rentalStore.personalData,
-    rentalDetails: rentalStore.rentalDetails,
-  });
-
-  if (success) {
-    handleClose();
-  }
+  emit("confirm");
+  handleClose();
 }
 
 function handleClose() {
@@ -143,7 +137,7 @@ watch(
   () => props.open,
   (isOpen) => {
     if (!isOpen) {
-      rentalStore.resetState();
+      rentalStore.resetFormState();
     }
   }
 );

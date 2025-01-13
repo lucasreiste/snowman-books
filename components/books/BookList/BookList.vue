@@ -75,9 +75,14 @@
           <Button
             class="w-full sm:w-auto"
             variant="default"
+            :disabled="rentedBookIds.includes(book.id)"
             @click="emitRentBook(book)"
           >
-            {{ $t("books.rentButton") }}
+            {{
+              rentedBookIds.includes(book.id)
+                ? $t("books.alreadyRented")
+                : $t("books.rentButton")
+            }}
           </Button>
         </CardFooter>
       </Card>
@@ -91,6 +96,7 @@ import type { Book } from "@/types/book";
 interface Props {
   books: Book[];
   itemsPerPage: number;
+  rentedBookIds: string[];
 }
 
 interface Emits {
@@ -100,6 +106,7 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   itemsPerPage: 10,
+  rentedBookIds: [],
 });
 
 const emits = defineEmits<Emits>();

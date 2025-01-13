@@ -94,7 +94,7 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between">
+          <div class="flex flex-col gap-2">
             <div class="text-sm">
               <span class="font-medium">{{
                 t("rental.rentedBooks.details.total")
@@ -103,9 +103,14 @@
                 {{ formatPrice(rentalItem.rentalDetails.totalPrice) }}
               </span>
             </div>
-            <Button variant="default" @click="renewRental">
-              {{ t("rental.rentedBooks.details.renew") }}
-            </Button>
+            <div class="flex gap-2">
+              <Button variant="default" @click="renewRental">
+                {{ t("rental.rentedBooks.details.renew") }}
+              </Button>
+              <Button variant="outline" @click="cancelRental">
+                {{ t("rental.rentedBooks.details.cancel") }}
+              </Button>
+            </div>
           </div>
         </div>
       </CardContent>
@@ -117,14 +122,23 @@
 import type { RentalData } from "@/types/rental";
 import { useRental } from "@/composables/useRental";
 const { t } = useI18n();
+const { formatPrice } = useRental();
 
-defineProps<{
+const props = defineProps<{
   rentalItem: RentalData;
 }>();
+
+const rentalItem = props.rentalItem;
+
+const emit = defineEmits(["cancel-rental"]);
 
 const renewRental = () => {
   alert("Renovando aluguel...");
 };
 
-const { formatPrice } = useRental();
+const cancelRental = () => {
+  if (confirm("Tem certeza que deseja cancelar o aluguel?")) {
+    emit("cancel-rental", rentalItem.book.id);
+  }
+};
 </script>

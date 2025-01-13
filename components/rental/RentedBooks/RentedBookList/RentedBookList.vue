@@ -26,6 +26,7 @@
         v-for="(rentalItem, index) in rentedBooks"
         :key="rentalItem.id || index"
         :rental-item="rentalItem"
+        @cancel-rental="$emit('cancel-rental', $event)"
       />
     </div>
   </section>
@@ -38,4 +39,6 @@ const { t } = useI18n();
 defineProps<{
   rentedBooks: RentalData[];
 }>();
+
+defineEmits(["cancel-rental"]);
 </script>

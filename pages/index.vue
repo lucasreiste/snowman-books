@@ -15,13 +15,14 @@
           <div v-if="error" class="text-center text-red-500">
             <p class="text-xl">{{ $t("books.loadError") }} {{ error }}</p>
           </div>
-
           <div v-else-if="books.length > 0">
             <BookList
               v-model:items-per-page="itemsPerPage"
               :books="paginatedBooks"
+              :rented-book-ids="rentalStore.rentedBookIds"
               @rent-book="handleRentBook"
             />
+
             <Pagination
               :total-items="books.length"
               :items-per-page="itemsPerPage"
@@ -39,8 +40,8 @@
 
     <RentalBookModal
       :open="isModalOpen"
-      @confirm="isModalOpen = false"
-      @close="isModalOpen = false"
+      @confirm="handleConfirmRental"
+      @close="closeModal"
     />
   </div>
 </template>
@@ -68,7 +69,10 @@ const rentalStore = useRentalStore();
 const rental = useRental();
 const isModalOpen = ref(false);
 
-onMounted(() => loadBooks());
+onMounted(() => {
+  loadBooks();
+  rentalStore.initializeFromLocalStorage();
+});
 
 const handleSearch = async (term: string) => {
   searchQuery.value = term;
@@ -79,5 +83,28 @@ const handleRentBook = (book: Book) => {
   rentalStore.setSelectedBook(book);
   rentalStore.setRentalDetails(rental.initializeRental(book));
   isModalOpen.value = true;
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+};
+
+const handleConfirmRental = () => {
+  const selectedBook = rentalStore.selectedBook;
+  const rentalDetails = rentalStore.rentalDetails;
+  const personalData = rentalStore.personalData;
+
+  if (selectedBook && rentalDetails && personalData) {
+    rentalStore.addRental({
+      book: selectedBook,
+      personalData,
+      rentalDetails: {
+        duration: rentalDetails.duration,
+        totalPrice: rentalDetails.totalPrice,
+      },
+    });
+  }
+
+  closeModal();
 };
 </script>
