@@ -8,9 +8,6 @@
             :placeholder="t('books.searchPlaceholder')"
             class="pl-10"
           >
-            <template #leading>
-              <LucideSearch class="h-4 w-4 text-muted-foreground" />
-            </template>
           </Input>
         </div>
         <Button type="submit" class="gap-2">

@@ -1,6 +1,6 @@
 <template>
   <Dialog :open="open" @close="handleClose">
-    <DialogContent class="lg:max-w-2xl p-6">
+    <DialogContent class="lg:max-w-2xl p-6 [&>button]:hidden">
       <div class="flex flex-col">
         <RentalStepper :steps="steps" :current-step="rentalStore.currentStep" />
         <component :is="currentStepComponent" />
@@ -13,7 +13,10 @@
             {{ t("rental.buttons.close") }}
           </Button>
           <Button
-            v-if="rentalStore.currentStep > 1"
+            v-if="
+              rentalStore.currentStep > 1 &&
+              rentalStore.currentStep < steps.length
+            "
             variant="secondary"
             @click="rentalStore.previousStep"
           >

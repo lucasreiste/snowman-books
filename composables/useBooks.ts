@@ -35,11 +35,13 @@ export function useBooks(initialItemsPerPage = 10): UseBooksReturn {
   );
 
   async function loadBooks(term?: string): Promise<void> {
+    const MAX_RESULTS = 20;
+
     isLoading.value = true;
     error.value = null;
     books.value = [];
 
-    const newBooks = await fetchBooks(term, 20);
+    const newBooks = await fetchBooks(term, MAX_RESULTS);
     books.value = newBooks;
 
     if (!term) {

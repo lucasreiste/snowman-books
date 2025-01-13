@@ -29,7 +29,7 @@ const emits = defineEmits<{
 }>();
 
 const options = [10, 20, 30, 40];
-const selected = ref(10); // Valor inicial de 10 itens por página
+const selected = ref(10);
 
 function onChange() {
   emits("update:modelValue", selected.value);

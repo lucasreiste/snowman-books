@@ -50,4 +50,19 @@ export default defineNuxtConfig({
       },
     },
   },
+  app: {
+    head: {
+      title: "Snowman Books",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "description", content: "Sua biblioteca digital" },
+        { name: "theme-color", content: "#000000" },
+      ],
+      link: [
+        { rel: "icon", type: "image/png", href: "/logo-snow.png" },
+        { rel: "apple-touch-icon", href: "/logo-snow.png" },
+      ],
+    },
+  },
 });
