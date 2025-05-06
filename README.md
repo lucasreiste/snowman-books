@@ -1,7 +1,7 @@
 <br />
 <div align="center">
 <p align="center">
-  <img src="./assets/logo-snow.png" alt="Snowman Books Logo" width="200">
+  <img src="/assets/logo-snow.png" alt="Snowman Books Logo" width="200">
 </p>
 
   <h3 align="center">Snowman Books</h3>
